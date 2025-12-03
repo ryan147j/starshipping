@@ -1,0 +1,68 @@
+/* Domestic Shipping Styles */
+:root { --blue:#1e3a8a; --blue-500:#2563eb; --yellow:#fbbf24; --muted:#64748b; --ink:#0f172a; }
+
+.ds-page .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* Nav (consistent) */
+.ds-nav { position:sticky; top:0; z-index:30; background:#fff; box-shadow:0 2px 12px rgba(0,0,0,.06); }
+.ds-nav__container { display:flex; align-items:center; justify-content:space-between; padding:.75rem 1.5rem; }
+.ds-nav__brand { display:flex; align-items:center; gap:.6rem; color:var(--blue); font-weight:800; text-decoration:none; }
+.ds-nav__logo { width:40px; height:40px; }
+.ds-nav__links { display:flex; gap:1.5rem; }
+.ds-nav__links a { color:#1f2937; text-decoration:none; font-weight:600; }
+.ds-nav__links a:hover { color:var(--blue-500); }
+.ds-nav__cta { background:var(--yellow); color:var(--blue); border:none; border-radius:8px; padding:.6rem 1rem; font-weight:800; }
+
+/* Hero (two-column on white) */
+.ds-hero { background:#ffffff; padding:28px 0 24px; margin-bottom:48px; }
+.ds-hero .container { max-width: 1280px; padding-left: 4px; }
+.ds-hero__grid { display:grid; grid-template-columns: 560px 1fr; gap:28px; align-items:center; }
+.ds-hero__image img { width:100%; height:400px; object-fit:cover; border-radius:18px; box-shadow:0 14px 34px rgba(2,6,23,.12); display:block; }
+.ds-hero__text h1 { font-size:40px; line-height:1.15; font-weight:800; color:#0f172a; margin-bottom:12px; }
+.ds-hero__text p { color:#475569; margin-bottom:16px; }
+.ds-hero__chips { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:18px; }
+.chip { display:inline-flex; align-items:center; gap:6px; padding:8px 12px; border-radius:999px; border:1px solid #CBD5E1; color:#0f172a; background:#fff; box-shadow:0 2px 6px rgba(2,6,23,.04); font-weight:600; }
+.chip-ico { font-size:14px; }
+.btn-primary { background:#2563eb; color:#fff; border:none; border-radius:10px; padding:12px 18px; font-weight:800; box-shadow:0 10px 24px rgba(37,99,235,.28); }
+.ds-hero__cta { margin-top:4px; }
+
+/* Why choose */
+.ds-why { background:#fff; padding:48px 0 36px; }
+.center { text-align:center; }
+.muted { color:var(--muted); margin-top:.3rem; }
+.cards { margin-top:20px; display:grid; grid-template-columns: repeat(3, 1fr); gap:18px; }
+.card { background:#fff; border-radius:16px; padding:18px; box-shadow:0 10px 30px rgba(2,6,23,.08); border:1px solid #eef2f7; }
+.icon { width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:10px; background:#eef2ff; margin-bottom:.5rem; font-size:1.15rem; }
+.card h3 { font-size:18px; margin:.1rem 0 .25rem; color:#0f172a; }
+.card p { color:var(--muted); }
+
+/* Coverage */
+.ds-coverage { background:#f8fafc; padding:48px 0; }
+.cov-grid { display:grid; grid-template-columns: 1.1fr 1fr; gap:28px; align-items:center; }
+.cov-media .img-card { border-radius:16px; overflow:hidden; box-shadow:0 14px 32px rgba(2,6,23,.10); border:1px solid #e5e7eb; }
+.cov-media .img-card img { width:100%; max-width:520px; display:block; }
+.cov-text h2 { font-size:28px; font-weight:800; color:#0f172a; margin-bottom:.4rem; }
+.cov-text p { color:var(--muted); margin-bottom:.5rem; }
+.bullets { color:#0f172a; padding-left:1rem; }
+.bullets li { margin-bottom:.3rem; }
+
+/* CTA */
+.ds-cta { background:linear-gradient(90deg, var(--blue) 0%, var(--blue-500) 100%); color:#fff; padding:42px 0; text-align:center; }
+.cta-wrap h2 { font-size:32px; font-weight:800; margin-bottom:.4rem; }
+.cta-wrap p { opacity:.95; margin-bottom:16px; }
+.btn-white { background:#fff; color:var(--blue); border:none; border-radius:8px; padding:.9rem 1.6rem; font-weight:800; }
+
+/* Footer spacing aligns with site */
+.footer { margin-top:0; }
+
+/* Responsive */
+@media (max-width: 1024px){
+  .ds-hero__grid { grid-template-columns: 500px 1fr; }
+  .ds-hero__image img { height:360px; }
+}
+@media (max-width: 900px){
+  .ds-hero__grid { grid-template-columns: 1fr; }
+  .ds-hero__image img { height:240px; }
+  .cards { grid-template-columns: 1fr; }
+  .cov-grid { grid-template-columns: 1fr; }
+}

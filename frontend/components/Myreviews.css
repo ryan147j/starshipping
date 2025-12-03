@@ -1,0 +1,247 @@
+.myreviews-page {
+  min-height: 100vh;
+  background-color: #f3f4f6;
+}
+
+.myreviews-main {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 32px 16px 40px;
+}
+
+.myreviews-header-block {
+  margin-bottom: 20px;
+}
+
+.myreviews-title {
+  font-size: 24px;
+  line-height: 1.3;
+  font-weight: 600;
+  color: #111827;
+}
+
+.myreviews-subtitle {
+  margin-top: 4px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.myreviews-summary-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.myreviews-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  font-size: 13px;
+  color: #374151;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+
+.myreviews-pill-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.myreviews-pill-icon-gold {
+  background-color: #fef9c3;
+  color: #eab308;
+}
+
+.myreviews-pill-icon-blue {
+  background-color: #e0f2fe;
+  color: #2563eb;
+}
+
+.myreviews-pill-label {
+  font-weight: 500;
+}
+
+.myreviews-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.myreviews-card {
+  border-radius: 18px;
+  background-color: #ffffff;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+  border: 1px solid #e5e7eb;
+  padding: 16px 18px 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.myreviews-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.myreviews-service {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.myreviews-service-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.myreviews-service-icon-blue {
+  background-color: #e0f2fe;
+  color: #2563eb;
+}
+
+.myreviews-service-icon-green {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+
+.myreviews-service-icon-purple {
+  background-color: #ede9fe;
+  color: #7c3aed;
+}
+
+.myreviews-service-icon-orange {
+  background-color: #ffedd5;
+  color: #ea580c;
+}
+
+.myreviews-service-text-main {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.myreviews-service-text-sub {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.myreviews-card-menu {
+  font-size: 18px;
+  color: #9ca3af;
+}
+
+.myreviews-rating-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.myreviews-stars {
+  color: #f59e0b;
+  font-size: 14px;
+}
+
+.myreviews-rating-value {
+  font-size: 13px;
+  font-weight: 500;
+  color: #111827;
+}
+
+.myreviews-body-text {
+  font-size: 13px;
+  color: #4b5563;
+  line-height: 1.55;
+  margin-bottom: 12px;
+}
+
+.myreviews-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px solid #f3f4f6;
+}
+
+.myreviews-date {
+  font-size: 12px;
+  color: #6b7280;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.myreviews-date-icon {
+  font-size: 14px;
+}
+
+.myreviews-edit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  border: 1px solid #2563eb;
+  background-color: #2563eb;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.myreviews-edit-btn span:first-child {
+  font-size: 13px;
+}
+
+.myreviews-edit-btn:hover {
+  background-color: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+.myreviews-load-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.myreviews-load-more button {
+  min-width: 180px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  font-size: 13px;
+  color: #374151;
+  cursor: pointer;
+}
+
+.myreviews-load-more button:hover {
+  background-color: #f3f4f6;
+}
+
+@media (max-width: 768px) {
+  .myreviews-main {
+    padding: 24px 12px 32px;
+  }
+
+  .myreviews-grid {
+    grid-template-columns: 1fr;
+  }
+}

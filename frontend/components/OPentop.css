@@ -1,0 +1,86 @@
+/* Open Top Container Page Styles */
+.ot-page{background:#f3f7fc;color:#0f172a}
+.ot-page .container{max-width:1160px;margin:0 auto;padding:0 20px}
+
+/* Hero */
+.ot-hero{background:linear-gradient(180deg,#eef6ff,#f6faff);padding:26px 0 16px}
+.ot-hero__grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:18px}
+.ot-title{font-size:2.1rem;font-weight:900;margin:0 0 8px}
+.ot-tag{margin:0 0 14px;color:#334155}
+.ot-hero .img{display:flex;justify-content:center}
+.ot-hero .img img{width:100%;max-width:640px;height:auto;border-radius:16px;object-fit:cover}
+.ot-actions{display:flex;gap:10px}
+
+.btn{appearance:none;border:none;border-radius:12px;padding:10px 14px;font-weight:800;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease}
+.btn-primary{background:#2563eb;color:#fff;box-shadow:0 10px 24px rgba(37,99,235,.35)}
+.btn-outline{background:transparent;color:#2563eb;border:1.5px solid #2563eb}
+.btn:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(2,6,23,.12)}
+
+/* Sections */
+.section-title{font-size:1.6rem;font-weight:900;text-align:center;margin:0 0 6px}
+.section-sub{color:#475569;text-align:center;margin:0 0 12px}
+
+/* Specs */
+.ot-specs{padding:32px 0 20px}
+.ot-specs .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ot-card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;box-shadow:0 14px 40px rgba(2,6,23,.08);padding:16px 16px 6px;transition:transform .18s ease, box-shadow .18s ease}
+.ot-card:hover{transform:translateY(-4px);box-shadow:0 18px 46px rgba(2,6,23,.14)}
+.ot-card .hdr{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.ot-card .hdr .t{font-weight:800;color:#0f172a}
+.ot-card .hdr .ico{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff}
+.ot-card .kv-row{display:flex;align-items:center;justify-content:space-between;padding:10px 4px;border-top:1px solid #e5e7eb}
+.ot-card .kv-row .k{color:#334155}
+.ot-card .kv-row .v{font-weight:800;color:#0f172a}
+.ot-list{margin:0;padding:0 0 0 18px}
+.ot-list li{margin:4px 0}
+
+/* Icon background colors */
+.b-blue{background:#2563eb}
+.b-green{background:#10b981}
+.b-purple{background:#7c3aed}
+.b-orange{background:#f59e0b}
+.b-red{background:#ef4444}
+.b-sky{background:#0ea5e9}
+
+/* Features */
+.ot-features{padding:32px 0 22px}
+.ot-features .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-width:960px;margin:0 auto}
+.ot-feature{position:relative;border:1px solid #e5e7eb;border-radius:14px;box-shadow:0 10px 28px rgba(2,6,23,.06);padding:16px;background:#fff;transition:transform .18s ease, box-shadow .18s ease}
+.ot-feature .ico{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.15rem;margin-bottom:10px}
+.ot-feature .t{font-weight:800;margin-bottom:6px;color:#0f172a}
+.ot-feature .d{color:#475569;font-weight:400}
+.ot-feature:hover{transform:translateY(-4px);box-shadow:0 18px 42px rgba(2,6,23,.12)}
+/* Pastel gradient variants */
+.ot-feature.p-blue{background:linear-gradient(135deg,#f0f6ff,#ffffff)}
+.ot-feature.p-blue .ico{background:#2563eb}
+.ot-feature.p-green{background:linear-gradient(135deg,#ecfdf5,#ffffff)}
+.ot-feature.p-green .ico{background:#10b981}
+.ot-feature.p-purple{background:linear-gradient(135deg,#f5f3ff,#ffffff)}
+.ot-feature.p-purple .ico{background:#7c3aed}
+.ot-feature.p-orange{background:linear-gradient(135deg,#fff7ed,#ffffff)}
+.ot-feature.p-orange .ico{background:#f97316}
+.ot-feature.p-red{background:linear-gradient(135deg,#fef2f2,#ffffff)}
+.ot-feature.p-red .ico{background:#ef4444}
+.ot-feature.p-sky{background:linear-gradient(135deg,#f0f9ff,#ffffff)}
+.ot-feature.p-sky .ico{background:#0ea5e9}
+
+/* Use cases */
+.ot-use{padding:28px 0 24px}
+.ot-use .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ot-use .card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;box-shadow:0 14px 40px rgba(2,6,23,.08);padding:16px;transition:transform .18s ease, box-shadow .18s ease}
+.ot-use .card:hover{transform:translateY(-4px);box-shadow:0 18px 46px rgba(2,6,23,.14)}
+
+/* Overlay modal */
+.ot-modal{position:fixed;inset:0;background:rgba(15,23,42,.28);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;z-index:60}
+.ot-modal .sheet{background:#fff;border-radius:16px;box-shadow:0 18px 44px rgba(2,6,23,.2);width:min(860px,92vw);padding:20px}
+
+@media(max-width:980px){
+  .ot-hero__grid{grid-template-columns:1fr}
+}
+@media(max-width:900px){
+  .ot-specs .grid,.ot-use .grid{grid-template-columns:1fr}
+  .ot-features .grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .ot-features .grid{grid-template-columns:1fr}
+}

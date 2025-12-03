@@ -1,0 +1,145 @@
+/* Overlay */
+.ofr-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 60;
+  padding: 1rem;
+  animation: ofr-overlay-in .28s ease-out both;
+}
+.ofr-overlay.closing { animation: ofr-overlay-out .28s ease-in both; }
+
+@keyframes ofr-overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes ofr-overlay-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* Modal */
+.ofr-modal {
+  width: 100%;
+  max-width: 720px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 28px 80px rgba(2, 6, 23, 0.24);
+  overflow: hidden;
+  transform: translateY(10px);
+  animation: ofr-modal-in .34s cubic-bezier(.22,.8,.24,1) forwards;
+  position: relative; /* ensure absolute children (close button) are positioned to modal */
+}
+.ofr-modal.closing { animation: ofr-modal-out .34s ease-in forwards; }
+
+@keyframes ofr-modal-in {
+  from { opacity: 0; transform: translateY(18px) scale(.995); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes ofr-modal-out {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(10px) scale(.995); }
+}
+
+/* Decorative header image to match site style */
+.ofr-header {
+  height: 200px;
+  width: 100%;
+  background: center/cover no-repeat;
+  border-radius: 16px 16px 0 0;
+  animation: ofr-header-fade .35s ease-out both;
+}
+@keyframes ofr-header-fade {
+  from { opacity: 0; transform: scale(1.01); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Close button */
+.ofr-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: none;
+  background: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 5; /* above header image */
+}
+.ofr-close:hover { background: #f3f4f6; }
+
+/* Content */
+.ofr-content {
+  padding: 1rem 1.25rem 1.3rem 1.25rem; /* slightly reduced top spacing */
+}
+.ofr-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0.25rem 0 0.5rem 0;
+}
+.ofr-desc {
+  color: #64748b;
+  line-height: 1.65;
+  margin-bottom: 1rem;
+}
+
+/* Book Now */
+.ofr-book{ display:flex; justify-content:center; margin:22px 0 18px; }
+.ofr-book .book-now{ padding:12px 20px; border-radius:12px; border:none; background:linear-gradient(90deg,#2563eb,#1e3a8a); color:#fff; font-weight:900; cursor:pointer; box-shadow:0 12px 28px rgba(37,99,235,.32); transition:transform .18s ease, box-shadow .18s ease; }
+.ofr-book .book-now:hover{ transform:scale(1.03); box-shadow:0 18px 38px rgba(37,99,235,.38); }
+
+/* Features */
+.ofr-features {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.1rem;
+}
+.ofr-feature {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  box-shadow: 0 2px 10px rgba(30,58,138,0.06);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.ofr-feature:hover { transform: scale(1.03); box-shadow: 0 10px 24px rgba(30,58,138,0.14); }
+.ofr-ico { font-size: 1.2rem; }
+.ofr-label { color: #1e293b; font-weight: 700; font-size: 0.95rem; text-align: center; }
+
+/* CTA */
+.ofr-cta {
+  display: inline-block;
+  background: #fbbf24;
+  color: #1e3a8a;
+  border: none;
+  border-radius: 999px;
+  padding: 0.7rem 1.4rem;
+  font-weight: 800;
+  font-size: 0.98rem;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(251,191,36,0.28);
+  transition: transform .18s ease, box-shadow .18s ease, background .2s ease, box-shadow .18s ease;
+}
+.ofr-cta:hover { transform: translateY(-2px); box-shadow: 0 16px 32px rgba(251,191,36,0.32), 0 0 0 3px rgba(251,191,36,0.28); background:#f59e0b; color:#fff; }
+
+/* Responsive */
+@media (max-width: 540px) {
+  .ofr-header { height: 140px; }
+  .ofr-title { font-size: 1.45rem; }
+  .ofr-features { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,71 @@
+/* International Shipping Styles */
+:root { --blue:#1e3a8a; --blue-500:#2563eb; --yellow:#fbbf24; --muted:#64748b; --ink:#0f172a; }
+
+.is-page .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* Hero: text left, image right */
+.is-hero { background:#fff; padding:28px 0 24px; }
+.is-hero__grid { display:grid; grid-template-columns: 1fr 520px; gap:28px; align-items:center; }
+.is-hero__text h1 { font-size:40px; line-height:1.15; font-weight:800; color:#0f172a; margin-bottom:12px; }
+.is-hero__text p { color:#475569; margin-bottom:16px; }
+.is-hero__chips { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:18px; }
+.is-chip { display:inline-flex; align-items:center; gap:6px; padding:8px 12px; border-radius:999px; border:1px solid #CBD5E1; color:#0f172a; background:#fff; box-shadow:0 2px 6px rgba(2,6,23,.04); font-weight:600; }
+.is-chip-ico { font-size:14px; }
+.btn-yellow { background:var(--yellow); color:var(--blue); border:none; border-radius:10px; padding:12px 18px; font-weight:800; box-shadow:0 10px 24px rgba(251,191,36,.35); }
+.is-hero__image img { width:100%; height:360px; object-fit:cover; border-radius:18px; box-shadow:0 14px 34px rgba(2,6,23,.12); display:block; }
+
+/* Why choose */
+.is-why { background:#fff; padding:48px 0 36px; text-align:center; }
+.is-why .muted { color:var(--muted); margin-top:.3rem; }
+.is-why__grid { margin-top:20px; display:grid; grid-template-columns: repeat(2, 1fr); gap:18px; text-align:left; }
+.is-why__card { background:#fff; border:1px solid #eef2f7; border-radius:16px; padding:18px; box-shadow:0 10px 30px rgba(2,6,23,.06); display:flex; gap:12px; }
+.is-why__icon { width:40px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center; background:#eef2ff; font-size:1.15rem; color:#1e3a8a; }
+.is-why__card h3 { margin:.1rem 0 .25rem; font-size:18px; color:#0f172a; }
+.is-why__card p { color:var(--muted); }
+
+/* Stats band - light cards on white background */
+.is-stats { background:#f8fafc; color:#0f172a; padding:32px 0; }
+.is-stats__grid { display:grid; grid-template-columns: repeat(4, 1fr); gap:18px; text-align:center; }
+.is-stat {
+  background:#ffffff;
+  border-radius:18px;
+  padding:18px 20px;
+  box-shadow:0 10px 30px rgba(15,23,42,.10);
+}
+.is-stat .num {
+  font-size:30px;
+  font-weight:800;
+  color:#0f172a;
+  margin-bottom:4px;
+}
+.is-stat .lbl {
+  color:#64748b;
+}
+
+/* Steps */
+.is-steps { background:#fff; padding:48px 0; text-align:center; }
+.is-steps .muted { color:var(--muted); margin-top:.3rem; }
+.is-steps__grid { margin-top:18px; display:grid; grid-template-columns: repeat(4, 1fr); gap:18px; }
+.is-step { background:#fff; border:1px solid #eef2f7; border-radius:16px; padding:18px; box-shadow:0 8px 22px rgba(2,6,23,.06); }
+.is-step .circle { width:48px; height:48px; border-radius:999px; background:#eef2ff; color:#1e3a8a; font-weight:800; display:flex; align-items:center; justify-content:center; margin:0 auto 10px; }
+.is-step h4 { font-size:16px; color:#0f172a; margin-bottom:6px; }
+.is-step p { color:var(--muted); font-size:14px; }
+
+/* Big CTA gradient */
+.is-cta { background:linear-gradient(90deg, var(--blue) 0%, var(--blue-500) 100%); color:#fff; padding:54px 0; text-align:center; position:relative; overflow:hidden; }
+.is-cta h2 { font-size:32px; font-weight:800; margin-bottom:.5rem; }
+.is-cta p { opacity:.95; margin-bottom:16px; }
+.is-cta .btn-yellow { background:var(--yellow); color:#0f172a; box-shadow:0 10px 24px rgba(251,191,36,.35); }
+
+/* Responsive */
+@media (max-width: 1024px){
+  .is-hero__grid { grid-template-columns: 1fr 480px; }
+  .is-hero__image img { height:320px; }
+}
+@media (max-width: 900px){
+  .is-hero__grid { grid-template-columns: 1fr; }
+  .is-hero__image img { height:240px; }
+  .is-why__grid { grid-template-columns: 1fr; }
+  .is-stats__grid { grid-template-columns: 1fr 1fr; }
+  .is-steps__grid { grid-template-columns: 1fr 1fr; }
+}

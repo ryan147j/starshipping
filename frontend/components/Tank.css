@@ -1,0 +1,78 @@
+/* Tank Container Page Styles */
+.tk-page{background:#f3f7fc;color:#0f172a}
+.tk-page .container{max-width:1160px;margin:0 auto;padding:0 20px}
+
+/* Hero */
+.tk-hero{background:linear-gradient(180deg,#e5efff,#f6faff);padding:28px 0 18px}
+.tk-hero__grid{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:18px}
+.tk-title{font-size:2.4rem;font-weight:900;margin:0 0 10px}
+.tk-tag{margin:0 0 14px;color:#334155}
+.tk-hero .img{display:flex;justify-content:flex-end;padding-right:20px}
+.tk-hero .img img{width:100%;max-width:680px;height:auto;border-radius:16px;object-fit:cover;transform:translateX(32px)}
+.tk-actions{display:flex;gap:10px}
+
+/* Buttons */
+.btn{appearance:none;border:none;border-radius:12px;padding:10px 14px;font-weight:800;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease}
+.btn-primary{background:#2563eb;color:#fff;box-shadow:0 10px 24px rgba(37,99,235,.35)}
+.btn-outline{background:transparent;color:#2563eb;border:1.5px solid #2563eb}
+.btn:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(2,6,23,.12)}
+
+/* Sections */
+.section-title{font-size:1.6rem;font-weight:900;text-align:center;margin:0 0 6px}
+.section-sub{color:#475569;text-align:center;margin:0 0 12px}
+
+/* Specs */
+.tk-specs{padding:32px 0 22px}
+.tk-specs .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.tk-card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;box-shadow:0 14px 40px rgba(2,6,23,.08);padding:16px 16px 6px;transition:transform .18s ease, box-shadow .18s ease}
+.tk-card:hover{transform:translateY(-4px);box-shadow:0 18px 46px rgba(2,6,23,.14)}
+.tk-card .hdr{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.tk-card .hdr .t{font-weight:800;color:#0f172a}
+.tk-card .hdr .ico{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff}
+.tk-card .kv-row{display:flex;align-items:center;justify-content:space-between;padding:10px 4px;border-top:1px solid #e5e7eb}
+.tk-card .kv-row .k{color:#334155}
+.tk-card .kv-row .v{font-weight:800;color:#0f172a}
+
+/* Icon background colors */
+.b-blue{background:#2563eb}
+.b-green{background:#10b981}
+.b-purple{background:#7c3aed}
+.b-orange{background:#f59e0b}
+.b-red{background:#ef4444}
+.b-sky{background:#0ea5e9}
+
+/* Key Features */
+.tk-features{padding:30px 0 20px}
+.tk-features .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-width:960px;margin:0 auto}
+.tk-feature{position:relative;border:1px solid #e5e7eb;border-radius:14px;box-shadow:0 10px 28px rgba(2,6,23,.06);padding:16px;background:linear-gradient(135deg,#f8fbff,#ffffff);transition:transform .18s ease, box-shadow .18s ease}
+.tk-feature .ico{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;background:#2563eb;font-size:1.05rem;margin-bottom:10px}
+.tk-feature .t{font-weight:800;margin-bottom:6px}
+.tk-feature .d{color:#475569}
+.tk-feature:hover{transform:translateY(-4px);box-shadow:0 18px 42px rgba(2,6,23,.12)}
+
+/* Applications */
+.tk-apps{padding:26px 0 26px}
+.tk-apps .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.tk-app{background:#fff;border:1px solid #e5e7eb;border-radius:16px;box-shadow:0 14px 40px rgba(2,6,23,.08);padding:16px;transition:transform .18s ease, box-shadow .18s ease}
+.tk-app:hover{transform:translateY(-4px);box-shadow:0 18px 46px rgba(2,6,23,.14)}
+
+/* CTA */
+.tk-cta{padding:18px 0 30px}
+.tk-cta .wrap{background:#0f172a;color:#fff;border-radius:16px;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:20px}
+.tk-cta .big{font-weight:900;font-size:1.12rem}
+.tk-cta .small{opacity:.95}
+
+/* Responsive */
+@media(max-width:1000px){
+  .tk-hero__grid{grid-template-columns:1fr}
+  .tk-hero .img{justify-content:center;padding-right:0}
+  .tk-hero .img img{max-width:540px;transform:none}
+  .tk-title{font-size:2.1rem}
+}
+@media(max-width:900px){
+  .tk-specs .grid,.tk-apps .grid{grid-template-columns:1fr}
+  .tk-features .grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .tk-features .grid{grid-template-columns:1fr}
+}

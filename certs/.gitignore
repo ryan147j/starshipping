@@ -1,0 +1,5 @@
+# Local TLS materials (do not commit)
+*.pem
+*.crt
+*.key
+*.cer
