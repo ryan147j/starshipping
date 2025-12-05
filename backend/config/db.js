@@ -1,17 +1,50 @@
+// db.js
 var Sequelize = require('sequelize');
 require('dotenv').config();
 
-// Read from environment variables with sensible defaults
-var DB_NAME = process.env.DB_NAME || 'starshipping';
-var DB_USER = process.env.DB_USER || 'root';
-var DB_PASSWORD = process.env.DB_PASSWORD || 'root';
-var DB_HOST = process.env.DB_HOST || 'localhost';
-var DB_DIALECT = process.env.DB_DIALECT || 'mysql';
+/**
+ * DB connection:
+ * - Works with MySQL (local / hosted)
+ * - Works with PostgreSQL (Render / Neon)
+ * - Supports SSL if needed
+ * - Can use DATABASE_URL directly (for Postgres)
+ */
 
-var sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
-  host: DB_HOST,
-  dialect: DB_DIALECT,
-  logging: false
-});
+// Check if DATABASE_URL exists (Neon / Render Postgres)
+var connectionUrl = process.env.DATABASE_URL || null;
+
+var sequelize;
+
+if (connectionUrl) {
+  // PostgreSQL connection using full URL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+  sequelize = new Sequelize(connectionUrl, {
+    dialect: process.env.DB_DIALECT || 'postgres',
+    logging: false,
+    dialectOptions: {
+      ssl:
+        process.env.DB_SSL === 'true'
+          ? { require: true, rejectUnauthorized: false }
+          : false
+    }
+  });
+} else {
+  // Classic MySQL connection (local or hosted)
+  sequelize = new Sequelize(
+    process.env.DB_NAME || 'starshipping',
+    process.env.DB_USER || 'root',
+    process.env.DB_PASSWORD || 'root',
+    {
+      host: process.env.DB_HOST || 'localhost',
+      dialect: process.env.DB_DIALECT || 'mysql',
+      logging: false,
+      dialectOptions: {
+        ssl:
+          process.env.DB_SSL === 'true'
+            ? { require: true, rejectUnauthorized: false }
+            : false
+      }
+    }
+  );
+}
 
 module.exports = sequelize;

@@ -24,12 +24,13 @@ export default defineConfig(({ mode }) => {
     }
   }
 
-  const backendTarget = env.VITE_BACKEND_URL || 'http://localhost:5000'
+  const backendTarget = env.VITE_BACKEND_URL || 'http://127.0.0.1:10000'
+  console.log('[Vite] Proxying /api to:', backendTarget)
 
   return {
     plugins: [react()],
     server: {
-      https: httpsConfig,
+      https: false,
       proxy: {
         '/api': {
           target: backendTarget,

@@ -86,6 +86,20 @@ db.sequelize
     return db.sequelize.sync({ alter: true });
   })
   .then(function () {
+    // Insert a sample record into Test model to validate DB writes (ES5 style)
+    return db.Test.create({ name: 'Hello Neon!' })
+      .then(function (created) {
+        if (created && created.toJSON) {
+          console.log('🧪 Inserted Test record:', created.toJSON());
+        } else {
+          console.log('🧪 Inserted Test record with id:', created && created.id);
+        }
+      })
+      .catch(function (err) {
+        console.warn('⚠️  Failed to insert Test record:', err && err.message);
+      });
+  })
+  .then(function () {
     // Determine if HTTPS should be enabled in development
     var enableHttpsEnv = (process.env.DEV_ENABLE_HTTPS || '').toLowerCase() === 'true';
     var certsDir = path.join(__dirname, '..', 'certs');
@@ -97,7 +111,7 @@ db.sequelize
     var certPath = process.env.BACKEND_HTTPS_CERT || defaultCert;
     var hasCerts = fs.existsSync(keyPath) && fs.existsSync(certPath);
 
-    if ((enableHttpsEnv || hasDefaultCerts) && hasCerts) {
+    if (enableHttpsEnv && hasCerts) {
       try {
         var httpsOptions = {
           key: fs.readFileSync(keyPath),

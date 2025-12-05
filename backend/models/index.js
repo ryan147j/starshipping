@@ -14,6 +14,7 @@ var PublicBooking = require('./PublicBooking')(sequelize, Sequelize.DataTypes);
 var Review = require('./Review')(sequelize, Sequelize.DataTypes);
 var ContactMessage = require('./ContactMessage')(sequelize, Sequelize.DataTypes);
 var ChatMessage = require('./ChatMessage')(sequelize, Sequelize.DataTypes);
+var Test = require('./Test')(sequelize, Sequelize.DataTypes);
 
 db.User = User;
 db.Service = Service;
@@ -22,6 +23,7 @@ db.PublicBooking = PublicBooking;
 db.Review = Review;
 db.ContactMessage = ContactMessage;
 db.ChatMessage = ChatMessage;
+db.Test = Test;
 
 // Associations (ES5 syntax)
 User.hasMany(Booking, { foreignKey: 'user_id' });
