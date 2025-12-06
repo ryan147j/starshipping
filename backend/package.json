@@ -4,10 +4,10 @@
   "description": "Backend API for StarShipping application",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "dev": "node index.js",
-    "test": "jest",
-    "build": "echo 'No build step required for Node.js'"
+    "start": "node index.js",
+  "dev": "nodemon index.js",
+  "test": "jest",
+  "build": "echo 'No build step required for Node.js'"
   },
   "keywords": [
     "shipping",
