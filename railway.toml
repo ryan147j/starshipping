@@ -1,7 +1,0 @@
-﻿[build]
-builder = "node"
-buildCommand = "npm install"
-
-[deploy]
-startCommand = "node index.js"
-path = "backend"
