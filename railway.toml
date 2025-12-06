@@ -1,5 +1,5 @@
 ﻿[build]
-builder = "nodejs"
+builder = "node"
 buildCommand = "npm install"
 
 [deploy]
