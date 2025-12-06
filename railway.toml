@@ -1,5 +1,5 @@
 ﻿[build]
-builder = "nodejs"
+builder = "heroku/buildpacks:20"
 buildCommand = "npm install"
 
 [deploy]
