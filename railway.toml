@@ -5,7 +5,12 @@ startCommand = "npm start"
 
 [deploy]
 restartPolicyMaxRetries = 3
+
+[deploy.environment]
+PORT = 10000
 NODE_ENV = "production"
+DATABASE_URL = "postgresql://neondb_owner:npg_wj71UganlVWJ@ep-twilight-credit-agc25ymb-pooler.c-2.eu-central-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+DB_SSL = "true"
 
 [build.ignore]
 paths = [
