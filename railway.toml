@@ -1,3 +1,5 @@
+# TEMP FIX
+
 [build]
 builder = "nixpacks"
 buildCommand = "npm install"
@@ -12,13 +14,13 @@ restartPolicyMaxRetries = 3
 NODE_ENV = "production"
 
 [build.ignore]
-- "frontend/**"
-- "node_modules/**"
-- ".git"
-- ".gitignore"
-- "README.md"
-- "*.md"
-- ".env*"
+frontend/** 
+node_modules/** 
+.git 
+.gitignore 
+README.md 
+*.md 
+.env* 
 
 [build.buildpacks]
 nodejs = "latest"
