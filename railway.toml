@@ -1,3 +1,0 @@
-﻿[deploy]
-startCommand = "npm run start"
-path = "backend"
