@@ -1,0 +1,27 @@
+[build]
+builder = "nixpacks"
+buildCommand = "npm install"
+run = "node app.js"
+
+[deploy]
+startCommand = "node app.js"
+restartPolicyType = "on-failure"
+restartPolicyMaxRetries = 3
+
+[build.environment]
+NODE_ENV = "production"
+
+[build.ignore]
+- "frontend/**"
+- "node_modules/**"
+- ".git"
+- ".gitignore"
+- "README.md"
+- "*.md"
+- ".env*"
+
+[build.buildpacks]
+nodejs = "latest"
+
+[build.packages]
+nodejs = "18.x"
