@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Admin.css';
+import { API_BASE_URL } from '../config';
 
 const SECTIONS = {
   DASHBOARD: 'dashboard',
@@ -49,7 +50,7 @@ function AdminDashboard() {
     setLoading(true);
     setError('');
 
-    fetch('/api/admin/dashboard', {
+    fetch(API_BASE_URL + '/api/admin/dashboard', {
       method: 'GET',
       headers: { Authorization: 'Bearer ' + t }
     })
@@ -420,7 +421,7 @@ function BookingsPricing(props) {
     setSaving(true);
     setModalError('');
 
-    fetch('/api/admin/bookings/' + selected.id + '/set-price', {
+    fetch(API_BASE_URL + '/api/admin/bookings/' + selected.id + '/set-price', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -693,7 +694,7 @@ function ReviewsSection() {
     setLoading(true);
     setError('');
 
-    fetch('/api/admin/reviews', {
+    fetch(API_BASE_URL + '/api/admin/reviews', {
       method: 'GET',
       headers: { Authorization: 'Bearer ' + token }
     })
@@ -729,7 +730,7 @@ function ReviewsSection() {
     var token = getToken();
     if (!token) return;
 
-    fetch('/api/admin/reviews/' + id + '/approve', {
+    fetch(API_BASE_URL + '/api/admin/reviews/' + id + '/approve', {
       method: 'PUT',
       headers: { Authorization: 'Bearer ' + token }
     })
@@ -756,7 +757,7 @@ function ReviewsSection() {
     var token = getToken();
     if (!token) return;
 
-    fetch('/api/admin/reviews/' + id, {
+    fetch(API_BASE_URL + '/api/admin/reviews/' + id, {
       method: 'DELETE',
       headers: { Authorization: 'Bearer ' + token }
     })

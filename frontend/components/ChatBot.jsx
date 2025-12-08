@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { API_BASE_URL } from '../config';
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -222,7 +223,7 @@ const ChatBot = () => {
     setMessages(prev => prev.concat(userMessage));
     setInputValue('');
 
-    fetch('/api/chat/ask', {
+    fetch(API_BASE_URL + '/api/chat/ask', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

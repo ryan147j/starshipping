@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Settings.css';
+import { API_BASE_URL } from '../config';
 
 const Settings = () => {
   const [twoFactorEnabled, setTwoFactorEnabled] = useState(true);
@@ -48,7 +49,7 @@ const Settings = () => {
       token = '';
     }
 
-    fetch('/api/users/profile', {
+    fetch(API_BASE_URL + '/api/users/profile', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -132,7 +133,7 @@ const Settings = () => {
 
     setPasswordSaving(true);
 
-    fetch('/api/users/password', {
+    fetch(API_BASE_URL + '/api/users/password', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -205,7 +206,7 @@ const Settings = () => {
     setProfileLoading(true);
     setProfileError('');
 
-    fetch('/api/users/profile', {
+    fetch(API_BASE_URL + '/api/users/profile', {
       method: 'GET',
       headers: {
         Authorization: 'Bearer ' + token,

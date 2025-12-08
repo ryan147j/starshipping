@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Review.css';
 import Header from './Header';
 import Footer from './Footer';
+import { API_BASE_URL } from '../config';
 
 const initialReviews = [
   {
@@ -67,7 +68,7 @@ function Review() {
 
   useEffect(function () {
     setLoading(true);
-    fetch('/api/reviews')
+    fetch(API_BASE_URL + '/api/reviews')
       .then(function (res) {
         return res && res.ok ? res.json() : null;
       })
@@ -115,7 +116,7 @@ function Review() {
       if (t) headers['Authorization'] = 'Bearer ' + t;
     } catch (e) {}
 
-    fetch('/api/reviews', {
+    fetch(API_BASE_URL + '/api/reviews', {
       method: 'POST',
       headers: headers,
       body: JSON.stringify(payload),

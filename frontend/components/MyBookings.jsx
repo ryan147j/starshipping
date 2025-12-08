@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './MyBookings.css';
+import { API_BASE_URL } from '../config';
 
 function getStatusBadgeClassName(status) {
   var s = (status || '').toString().toLowerCase();
@@ -27,7 +28,7 @@ const MyBookings = () => {
       if (t) authHeaders['Authorization'] = 'Bearer ' + t;
     } catch (e) {}
 
-    fetch('/api/shipping/bookings', {
+    fetch(API_BASE_URL + '/api/shipping/bookings', {
       method: 'GET',
       headers: authHeaders
     })

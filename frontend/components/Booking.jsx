@@ -3,6 +3,7 @@ import './Booking.css'
 import Header from './Header'
 import Footer from './Footer'
 import visualImg from '../src/assets/booking.jpg'
+import { API_BASE_URL } from '../config'
 
 const Booking = () => {
   const [showConfirm, setShowConfirm] = useState(false)
@@ -55,7 +56,7 @@ const Booking = () => {
       if (t) headers['Authorization'] = 'Bearer ' + t
     } catch (e) {}
 
-    fetch('/api/shipping/booking-request', {
+    fetch(API_BASE_URL + '/api/shipping/booking-request', {
       method: 'POST',
       headers,
       body: JSON.stringify(data)

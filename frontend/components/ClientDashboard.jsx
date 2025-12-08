@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logoStarshipping2 from '../src/assets/logostarshipping2.png';
 import './ClientDashboard.css';
+import { API_BASE_URL } from '../config';
 
 function ClientDashboard() {
   const [userName, setUserName] = useState('John Smith');
@@ -34,7 +35,7 @@ function ClientDashboard() {
       if (t) authHeaders['Authorization'] = 'Bearer ' + t;
     } catch (e) {}
 
-    fetch('/api/shipping/bookings', {
+    fetch(API_BASE_URL + '/api/shipping/bookings', {
       method: 'GET',
       headers: authHeaders
     })
@@ -134,7 +135,7 @@ function ClientDashboard() {
       if (t) authHeaders['Authorization'] = 'Bearer ' + t;
     } catch (e) {}
 
-    fetch('/api/reviews/mine', { headers: authHeaders })
+    fetch(API_BASE_URL + '/api/reviews/mine', { headers: authHeaders })
       .then(function (res) {
         return res && res.ok ? res.json() : null;
       })

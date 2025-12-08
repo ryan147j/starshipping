@@ -6,6 +6,7 @@ import customsupportImg from '../src/assets/customsupport.jpg';
 import logoImg from '../src/assets/logostarshipping2.png';
 import facebookLogo from '../src/assets/facebooklogo.png';
 import linkedInLogo from '../src/assets/linkdin.png';
+import { API_BASE_URL } from '../config';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -39,7 +40,7 @@ const Contact = () => {
 
   useEffect(() => {
     // Load office location for map from backend
-    fetch('/api/shipping/office-location')
+    fetch(API_BASE_URL + '/api/shipping/office-location')
       .then(response => response.json())
       .then(data => {
         if (data && data.success) {
@@ -130,7 +131,7 @@ const Contact = () => {
     setIsSubmitting(true);
     setSubmitStatus('');
 
-    fetch('/api/contact/messages', {
+    fetch(API_BASE_URL + '/api/contact/messages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
