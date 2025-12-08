@@ -14,6 +14,11 @@ router.post('/forgot-password', authController.forgotPassword);
 router.post('/reset-password', authController.resetPassword);
 router.get('/verify-email/:token', authController.verifyEmail);
 
+// Safe test route
+router.get('/test', function (req, res) {
+  return res.json({ success: true, message: 'auth routes work' });
+});
+
 module.exports = router;
 
 

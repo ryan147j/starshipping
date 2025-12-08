@@ -209,4 +209,9 @@ router.head(['/roadcargo', '/roadcargo.mp4'], async (req, res) => {
   }
 });
 
+// Safe test route
+router.get('/test', function (req, res) {
+  return res.json({ success: true, message: 'media routes work' });
+});
+
 module.exports = router;

@@ -17,6 +17,11 @@ router.get('/rates', shippingController.getShippingRates);
 router.post('/calculate', shippingController.calculateShipping);
 router.get('/office-location', shippingController.getOfficeLocation);
 
+// Safe test route
+router.get('/test', function (req, res) {
+  return res.json({ success: true, message: 'shipping routes work' });
+});
+
 module.exports = router;
 
 

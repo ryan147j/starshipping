@@ -8,4 +8,9 @@ router.get('/', reviewController.getReviews);
 router.post('/', reviewController.createReview);
 router.get('/mine', requireAuth, reviewController.getMyReviews);
 
+// Safe test route
+router.get('/test', function (req, res) {
+  return res.json({ success: true, message: 'review routes work' });
+});
+
 module.exports = router;
