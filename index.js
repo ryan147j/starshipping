@@ -24,6 +24,7 @@ var adminRoutes = require('./routes/adminRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const APP_BASE_URL = process.env.APP_BASE_URL || 'http://localhost:' + PORT;
 
 // --- CORS Configuration ---
 const allowedOrigins = [
@@ -34,22 +35,32 @@ const allowedOrigins = [
 
 app.use(cors({
   origin: function(origin, callback) {
-    if (!origin) return callback(null, true); // allow server-to-server or Postman requests
+    if (!origin) return callback(null, true); // allow server-to-server/Postman
     if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-      return callback(new Error(msg), false);
+      return callback(new Error('The CORS policy for this site does not allow access from the specified Origin.'), false);
     }
     return callback(null, true);
   },
-  credentials: true,
+  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+  allowedHeaders: ['Content-Type','Authorization'],
+  credentials: true
+}));
+
+// Handle OPTIONS preflight globally
+app.options('*', cors({
+  origin: allowedOrigins,
+  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+  allowedHeaders: ['Content-Type','Authorization'],
+  credentials: true
 }));
 
 // Middlewares
 configureMiddlewares(app);
 app.set('trust proxy', 1);
 
+// Force HTTPS in dev if enabled
 if (process.env.DEV_ENABLE_HTTPS === 'true') {
-  app.use(function(req, res, next) {
+  app.use((req, res, next) => {
     if (req.secure || req.headers['x-forwarded-proto'] === 'https') return next();
     res.redirect(301, 'https://' + req.headers.host + req.originalUrl);
   });
@@ -64,6 +75,7 @@ app.get('/', (req, res) => {
   res.json({ message: 'StarShipping Backend API is running!', status: 'success', timestamp: new Date().toISOString() });
 });
 
+// API routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/shipping', shippingRoutes);
@@ -115,10 +127,11 @@ async function startServer() {
     // Start HTTP server
     app.listen(PORT, () => {
       console.log('🚀 Server running on port', PORT);
-      if (process.env.PORT) console.log('📡 Railway public URL will be available in Deployments → Latest Deployment');
+      if (process.env.PORT) console.log('📡 Railway public URL available in Deployments → Latest Deployment');
       else console.log('📡 API available at http://localhost:' + PORT);
       console.log('🏥 Health check at /api/health');
     });
+
   } catch (err) {
     console.error('❌ Unable to connect to the database:', err);
   }
