@@ -23,9 +23,19 @@ const corsMiddleware = cors({
       return callback(null, true);
     }
 
+    // Explicit allow-list
     if (allowedOrigins.indexOf(origin) !== -1) {
       return callback(null, true);
     }
+
+    // Allow Vercel deploys (production and preview)
+    try {
+      var url = new URL(origin);
+      var hostname = url.hostname || '';
+      if (hostname.endsWith('.vercel.app')) {
+        return callback(null, true);
+      }
+    } catch (e) {}
 
     return callback(new Error('Not allowed by CORS: ' + origin));
   },
