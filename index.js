@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const https = require('https');
-const cors = require('cors');
 require('dotenv').config();
 
 // Middleware
@@ -24,38 +23,28 @@ const adminRoutes = require('./routes/adminRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const APP_BASE_URL = process.env.APP_BASE_URL?.trim() || 'http://localhost:' + PORT;
 
-// --- CORS Configuration ---
+// --- GLOBAL CORS ---
 const allowedOrigins = [
   'https://starshipping-5511.vercel.app',
-  'https://starshipping.vercel.app', // added live Vercel domain
+  'https://starshipping.vercel.app',
   'https://starshipping.com.tn',
   'https://www.starshipping.com.tn'
 ];
 
-app.use(cors({
-  origin: function(origin, callback) {
-    if (!origin) return callback(null, true); // allow server-to-server/Postman
-    if (allowedOrigins.indexOf(origin) === -1) {
-      return callback(new Error('The CORS policy for this site does not allow access from the specified Origin.'), false);
-    }
-    return callback(null, true);
-  },
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
-}));
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  if (req.method === 'OPTIONS') return res.sendStatus(204); // respond immediately to preflight
+  next();
+});
 
-// Handle OPTIONS preflight globally
-app.options('*', cors({
-  origin: allowedOrigins,
-  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
-  allowedHeaders: ['Content-Type','Authorization'],
-  credentials: true
-}));
-
-// Middlewares
+// --- Middlewares ---
 configureMiddlewares(app);
 app.set('trust proxy', 1);
 
@@ -127,8 +116,7 @@ async function startServer() {
     // Start HTTP server
     app.listen(PORT, () => {
       console.log('🚀 Server running on port', PORT);
-      if (process.env.PORT) console.log('📡 Railway public URL available in Deployments → Latest Deployment');
-      else console.log('📡 API available at http://localhost:' + PORT);
+      console.log('📡 Railway public URL available in Deployments → Latest Deployment');
       console.log('🏥 Health check at /api/health');
     });
 
