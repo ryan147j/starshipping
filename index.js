@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const https = require('https');
+const cors = require('cors');
 require('dotenv').config();
 
 // Middleware
@@ -24,6 +25,25 @@ var adminRoutes = require('./routes/adminRoutes');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// --- CORS Configuration ---
+const allowedOrigins = [
+  'https://starshipping-5511.vercel.app',
+  'https://starshipping.com.tn',
+  'https://www.starshipping.com.tn'
+];
+
+app.use(cors({
+  origin: function(origin, callback) {
+    if (!origin) return callback(null, true); // allow server-to-server or Postman requests
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true,
+}));
+
 // Middlewares
 configureMiddlewares(app);
 app.set('trust proxy', 1);
@@ -35,12 +55,12 @@ if (process.env.DEV_ENABLE_HTTPS === 'true') {
   });
 }
 
-// Routes
-app.get('/api/health', function(req, res) {
+// --- Routes ---
+app.get('/api/health', (req, res) => {
   res.json({ status: 'healthy', uptime: process.uptime(), timestamp: new Date().toISOString() });
 });
 
-app.get('/', function(req, res) {
+app.get('/', (req, res) => {
   res.json({ message: 'StarShipping Backend API is running!', status: 'success', timestamp: new Date().toISOString() });
 });
 
@@ -74,16 +94,16 @@ async function startServer() {
     }
 
     // HTTPS dev check
-    var enableHttpsEnv = (process.env.DEV_ENABLE_HTTPS || '').toLowerCase() === 'true';
-    var certsDir = path.join(__dirname, '..', 'certs');
-    var defaultKey = path.join(certsDir, 'localhost-key.pem');
-    var defaultCert = path.join(certsDir, 'localhost.pem');
-    var hasDefaultCerts = fs.existsSync(defaultKey) && fs.existsSync(defaultCert);
+    const enableHttpsEnv = (process.env.DEV_ENABLE_HTTPS || '').toLowerCase() === 'true';
+    const certsDir = path.join(__dirname, '..', 'certs');
+    const defaultKey = path.join(certsDir, 'localhost-key.pem');
+    const defaultCert = path.join(certsDir, 'localhost.pem');
+    const hasDefaultCerts = fs.existsSync(defaultKey) && fs.existsSync(defaultCert);
 
     if (enableHttpsEnv && hasDefaultCerts) {
       try {
-        var httpsOptions = { key: fs.readFileSync(defaultKey), cert: fs.readFileSync(defaultCert) };
-        https.createServer(httpsOptions, app).listen(PORT, function() {
+        const httpsOptions = { key: fs.readFileSync(defaultKey), cert: fs.readFileSync(defaultCert) };
+        https.createServer(httpsOptions, app).listen(PORT, () => {
           console.log('🔐 HTTPS server running on port', PORT);
         });
         return;
@@ -93,7 +113,7 @@ async function startServer() {
     }
 
     // Start HTTP server
-    app.listen(PORT, function() {
+    app.listen(PORT, () => {
       console.log('🚀 Server running on port', PORT);
       if (process.env.PORT) console.log('📡 Railway public URL will be available in Deployments → Latest Deployment');
       else console.log('📡 API available at http://localhost:' + PORT);
