@@ -22,7 +22,7 @@ const userController = {
         });
       }
 
-      var baseUrl = process.env.APP_BASE_URL || ('http://localhost:' + (process.env.PORT || 5000));
+      var baseUrl = process.env.APP_BASE_URL || (req && req.protocol && req.get ? (req.protocol + '://' + req.get('host')) : ('http://localhost:' + (process.env.PORT || 5000)));
       var avatarUrl = '';
       if (user.avatar_url) {
         if (user.avatar_url.indexOf('http://') === 0 || user.avatar_url.indexOf('https://') === 0) {
@@ -90,7 +90,7 @@ const userController = {
 
       await user.save();
 
-      var baseUrl2 = process.env.APP_BASE_URL || ('http://localhost:' + (process.env.PORT || 5000));
+      var baseUrl2 = process.env.APP_BASE_URL || (req && req.protocol && req.get ? (req.protocol + '://' + req.get('host')) : ('http://localhost:' + (process.env.PORT || 5000)));
       var avatarUrl2 = '';
       if (user.avatar_url) {
         if (user.avatar_url.indexOf('http://') === 0 || user.avatar_url.indexOf('https://') === 0) {
@@ -252,7 +252,7 @@ const userController = {
         await user.save();
       }
 
-      var baseUrl3 = process.env.APP_BASE_URL || ('http://localhost:' + (process.env.PORT || 5000));
+      var baseUrl3 = process.env.APP_BASE_URL || (req && req.protocol && req.get ? (req.protocol + '://' + req.get('host')) : ('http://localhost:' + (process.env.PORT || 5000)));
       var fullUrl = baseUrl3 + filePath;
 
       res.status(200).json({

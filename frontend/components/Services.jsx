@@ -8,7 +8,7 @@ import heavycargoImg from '../src/assets/heavycargo.jpg';
 import oceanfreightImg from '../src/assets/ocenafreight .jpg';
 import opentopCardImg from '../src/assets/opentop.jpg';
 import roadfreightImg from '../src/assets/roadtransport.jpg';
-import warehousingImg from '../src/assets/wearhosuing.jpg';
+import warehousingImg from '../src/assets/warehousy1.jpg';
 import internationaltransportImg from '../src/assets/internationaltransport.jpg';
 import flatrack2Img from '../src/assets/flatrack2.jpg';
 import tankImg from '../src/assets/tank.jpg';

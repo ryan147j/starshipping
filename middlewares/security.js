@@ -28,11 +28,14 @@ const corsMiddleware = cors({
       return callback(null, true);
     }
 
-    // Allow Vercel deploys (production and preview)
+    // Allow Vercel deploys (production and preview) and Netlify sites
     try {
       var url = new URL(origin);
       var hostname = url.hostname || '';
       if (hostname.endsWith('.vercel.app')) {
+        return callback(null, true);
+      }
+      if (hostname.endsWith('.netlify.app')) {
         return callback(null, true);
       }
     } catch (e) {}
