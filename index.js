@@ -10,25 +10,26 @@ const configureMiddlewares = require('./middlewares/configure');
 const { errorHandler, notFoundHandler } = require('./middlewares');
 
 // Sequelize models
-var db = require('./models');
+const db = require('./models');
 
 // Routes
-var authRoutes = require('./routes/authRoutes');
-var userRoutes = require('./routes/userRoutes');
-var shippingRoutes = require('./routes/shippingRoutes');
-var contactRoutes = require('./routes/contactRoutes');
-var chatRoutes = require('./routes/chatRoutes');
-var reviewRoutes = require('./routes/reviewRoutes');
-var mediaRoutes = require('./routes/mediaRoutes');
-var adminRoutes = require('./routes/adminRoutes');
+const authRoutes = require('./routes/authRoutes');
+const userRoutes = require('./routes/userRoutes');
+const shippingRoutes = require('./routes/shippingRoutes');
+const contactRoutes = require('./routes/contactRoutes');
+const chatRoutes = require('./routes/chatRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
+const mediaRoutes = require('./routes/mediaRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const APP_BASE_URL = process.env.APP_BASE_URL || 'http://localhost:' + PORT;
+const APP_BASE_URL = process.env.APP_BASE_URL?.trim() || 'http://localhost:' + PORT;
 
 // --- CORS Configuration ---
 const allowedOrigins = [
   'https://starshipping-5511.vercel.app',
+  'https://starshipping.vercel.app', // added live Vercel domain
   'https://starshipping.com.tn',
   'https://www.starshipping.com.tn'
 ];
@@ -41,8 +42,8 @@ app.use(cors({
     }
     return callback(null, true);
   },
-  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
-  allowedHeaders: ['Content-Type','Authorization'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
 
@@ -58,8 +59,8 @@ app.options('*', cors({
 configureMiddlewares(app);
 app.set('trust proxy', 1);
 
-// Force HTTPS in dev if enabled
-if (process.env.DEV_ENABLE_HTTPS === 'true') {
+// Force HTTPS if DEV_ENABLE_HTTPS=true
+if ((process.env.DEV_ENABLE_HTTPS || '').toLowerCase() === 'true') {
   app.use((req, res, next) => {
     if (req.secure || req.headers['x-forwarded-proto'] === 'https') return next();
     res.redirect(301, 'https://' + req.headers.host + req.originalUrl);
@@ -75,7 +76,6 @@ app.get('/', (req, res) => {
   res.json({ message: 'StarShipping Backend API is running!', status: 'success', timestamp: new Date().toISOString() });
 });
 
-// API routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/shipping', shippingRoutes);
@@ -89,7 +89,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(errorHandler);
 app.use(notFoundHandler);
 
-// DB init and server start
+// --- DB init and server start ---
 async function startServer() {
   try {
     await db.sequelize.authenticate();
@@ -99,7 +99,7 @@ async function startServer() {
 
     // Optional test record
     try {
-      var test = await db.Test.create({ name: 'Hello Neon!' });
+      const test = await db.Test.create({ name: 'Hello Neon!' });
       console.log('🧪 Test record inserted:', test.toJSON());
     } catch (err) {
       console.warn('⚠️ Failed to insert test record:', err.message);
