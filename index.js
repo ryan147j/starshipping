@@ -24,26 +24,6 @@ const adminRoutes = require('./routes/adminRoutes');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// --- GLOBAL CORS ---
-const allowedOrigins = [
-  'https://starshipping-5511.vercel.app',
-  'https://starshipping.vercel.app',
-  'https://starshipping.com.tn',
-  'https://www.starshipping.com.tn'
-];
-
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
-  }
-  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  if (req.method === 'OPTIONS') return res.sendStatus(204); // respond immediately to preflight
-  next();
-});
-
 // --- Middlewares ---
 configureMiddlewares(app);
 app.set('trust proxy', 1);

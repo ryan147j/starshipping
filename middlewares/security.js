@@ -7,35 +7,21 @@ const securityMiddleware = helmet();
 
 // CORS middleware
 const allowedOrigins = [
-  'http://localhost:3000',
-  'http://localhost:5173',
-  'https://localhost:3000',
-  'https://localhost:5173',
-  'http://localhost:5174',
-  'https://localhost:5174',
-  process.env.FRONTEND_URL
+  'https://starshipping-5511.vercel.app',
+  'https://starshipping.vercel.app',
+  'https://starshipping.com.tn',
+  'https://www.starshipping.com.tn'
 ].filter(Boolean);
 
 const corsMiddleware = cors({
   origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps, curl, Postman)
-    if (!origin) {
-      return callback(null, true);
-    }
+    if (!origin) return callback(null, true); // allow server-to-server/Postman
+    if (allowedOrigins.includes(origin)) return callback(null, true);
 
-    // Explicit allow-list
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      return callback(null, true);
-    }
-
-    // Allow Vercel deploys (production and preview) and Netlify sites
+    // Allow Vercel and Netlify preview URLs
     try {
-      var url = new URL(origin);
-      var hostname = url.hostname || '';
-      if (hostname.endsWith('.vercel.app')) {
-        return callback(null, true);
-      }
-      if (hostname.endsWith('.netlify.app')) {
+      const hostname = new URL(origin).hostname;
+      if (hostname.endsWith('.vercel.app') || hostname.endsWith('.netlify.app')) {
         return callback(null, true);
       }
     } catch (e) {}
@@ -55,6 +41,3 @@ module.exports = {
   corsMiddleware,
   loggingMiddleware
 };
-
-
-
