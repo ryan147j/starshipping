@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Signup.css';
 import logoDark from '../src/assets/logostarshipping2.png';
+import { API_BASE_URL } from '../config';
 
 function Signup() {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ function Signup() {
     setLoading(true);
 
     try {
-      const response = await fetch('/api/auth/signup', {
+      const response = await fetch(API_BASE_URL + '/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

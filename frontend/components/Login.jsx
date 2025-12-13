@@ -222,9 +222,9 @@ function Login() {
 
         <div className="login-footer-text">
           Don&apos;t have an account?
-          <a href="/signup" className="login-footer-link">
+          <button type="button" className="login-footer-link" onClick={() => navigate('/signup')}>
             Sign Up
-          </a>
+          </button>
         </div>
       </div>
     </div>
