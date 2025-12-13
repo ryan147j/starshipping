@@ -86,11 +86,12 @@ var chatController = {
     }
 
     var apiKey = process.env.MISTRAL_API_KEY;
+    var fallbackAnswer = 'Hi! Our assistant is currently running in basic mode. For shipping quotes, bookings, or support, please use the contact form or call us. How can I help you today?';
     if (!apiKey) {
       // Graceful fallback so chat always works even without an API key
       return res.status(200).json({
         success: true,
-        answer: 'Hi! Our assistant is currently running in basic mode. For shipping quotes, bookings, or support, please use the contact form or call us. How can I help you today?'
+        answer: fallbackAnswer
       });
     }
 
@@ -115,37 +116,41 @@ var chatController = {
       })
     })
       .then(function (response) {
-        return response.json().then(function (data) {
-          return { ok: response.ok, data: data };
+        return response.text().then(function (text) {
+          var data;
+          try {
+            data = text ? JSON.parse(text) : null;
+          } catch (e) {
+            console.error('Mistral non-JSON response:', text);
+            data = null;
+          }
+          return { ok: response.ok, status: response.status, data: data, raw: text };
         });
       })
       .then(function (result) {
         var data = result && result.data;
 
         if (!data) {
-          console.error('Mistral empty response:', result);
-          return res.status(500).json({
-            success: false,
-            message: 'Assistant service returned an empty response.'
-          });
+          console.error('Mistral empty or unparsable response:', result);
+          return res.status(200).json({ success: true, answer: fallbackAnswer });
         }
 
         if (data.error) {
           console.error('Mistral error:', data.error);
-          return res.status(500).json({
-            success: false,
-            message: data.error.message || 'Assistant service reported an error.'
-          });
+          return res.status(200).json({ success: true, answer: fallbackAnswer });
         }
 
         try {
           var choice = data.choices && data.choices[0];
-          var answer = choice && choice.message && choice.message.content;
+          // Support multiple possible shapes
+          var answer = (choice && choice.message && choice.message.content)
+                    || (choice && choice.delta && choice.delta.content)
+                    || (choice && choice.content)
+                    || (data.output && data.output[0] && data.output[0].content)
+                    || '';
           if (!answer) {
-            return res.status(500).json({
-              success: false,
-              message: 'Assistant returned an empty reply.'
-            });
+            console.warn('Assistant returned empty content. Raw data:', data);
+            return res.status(200).json({ success: true, answer: fallbackAnswer });
           }
 
           return res.status(200).json({
@@ -154,18 +159,12 @@ var chatController = {
           });
         } catch (e) {
           console.error('Error parsing Mistral response:', e, 'raw data:', data);
-          return res.status(500).json({
-            success: false,
-            message: 'Failed to parse assistant reply.'
-          });
+          return res.status(200).json({ success: true, answer: fallbackAnswer });
         }
       })
       .catch(function (err) {
         console.error('Error calling Mistral API:', err);
-        return res.status(500).json({
-          success: false,
-          message: 'Error contacting chat service.'
-        });
+        return res.status(200).json({ success: true, answer: fallbackAnswer });
       });
   }
 };

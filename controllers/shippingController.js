@@ -333,6 +333,7 @@ const shippingController = {
     var mailOptions = {
       from: process.env.SMTP_FROM || process.env.SMTP_USER,
       to: recipient,
+      cc: process.env.SMTP_USER || undefined,
       subject: '[StarShipping] A new client wants a booking',
       text:
         'Salut Insaf, here\'s a new booking for service: ' + cargoType + '.\n\n' +
@@ -348,6 +349,15 @@ const shippingController = {
         'Additional Notes: ' + notes + '\n',
       replyTo: email || undefined
     };
+
+    // Optional SMTP connectivity check (does not block if it fails)
+    try {
+      bookingTransporter.verify(function (vErr, success) {
+        if (vErr) {
+          console.warn('⚠️ SMTP verify failed (continuing anyway):', vErr && vErr.message ? vErr.message : vErr);
+        }
+      });
+    } catch (verifyCatch) {}
 
     bookingTransporter.sendMail(mailOptions, function (err) {
       if (err) {
