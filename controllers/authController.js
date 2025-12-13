@@ -132,36 +132,15 @@ const authController = {
 
   // Register new user (placeholder/demo)
   register: async (req, res) => {
-    try {
-      const { email, password, firstName, lastName } = req.body;
-      
-      // TODO: Add validation
-      // TODO: Check if user already exists
-      // TODO: Hash password
-      // TODO: Save user to database
-      
-      res.status(201).json({
-        success: true,
-        message: 'User registered successfully',
-        data: {
-          email,
-          firstName,
-          lastName
-        }
-      });
-    } catch (error) {
-      res.status(500).json({
-        success: false,
-        message: 'Registration failed',
-        error: error.message
-      });
-    }
+    // For compatibility with frontend calling /register, reuse the real signup implementation
+    // so that /api/auth/register behaves identically to /api/auth/signup
+    return authController.signup(req, res);
   },
 
   // Login user
   login: async (req, res) => {
     try {
-      const email = req.body && req.body.email;
+      const email = (req.body && req.body.email ? String(req.body.email) : '').trim().toLowerCase();
       const password = req.body && req.body.password;
 
       if (!email || !password) {
@@ -171,7 +150,8 @@ const authController = {
         });
       }
 
-      const user = await User.findOne({ where: { email: email } });
+      // Use unscoped so password_hash is included despite default scope exclusions
+      const user = await User.unscoped().findOne({ where: { email: email } });
       if (!user) {
         return res.status(401).json({
           success: false,

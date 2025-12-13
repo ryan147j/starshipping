@@ -25,34 +25,15 @@ module.exports = function (sequelize, DataTypes) {
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE'
     },
-    client_name: {
-      type: DataTypes.STRING
-    },
-    client_phone: {
-      type: DataTypes.STRING
-    },
-    cargo_type: {
-      type: DataTypes.STRING
-    },
-    origin: {
-      type: DataTypes.STRING
-    },
-    destination: {
-      type: DataTypes.STRING
-    },
-    cargo_weight: {
-      type: DataTypes.INTEGER
-    },
-    preferred_date: {
-      type: DataTypes.DATE
-    },
-    additional_notes: {
-      type: DataTypes.TEXT
-    },
-    status: {
-      type: DataTypes.STRING,
-      defaultValue: 'pending'
-    }
+    client_name: { type: DataTypes.STRING },
+    client_phone: { type: DataTypes.STRING },
+    cargo_type: { type: DataTypes.STRING },
+    origin: { type: DataTypes.STRING },
+    destination: { type: DataTypes.STRING },
+    cargo_weight: { type: DataTypes.INTEGER },
+    preferred_date: { type: DataTypes.DATE },
+    additional_notes: { type: DataTypes.TEXT },
+    status: { type: DataTypes.STRING, defaultValue: 'pending' }
   }, {
     tableName: 'Bookings',
     timestamps: true
