@@ -134,28 +134,10 @@ const About = () => {
 
   const leadership = [
     {
-      name: 'Michael Chen',
+      name: 'Najoua Hamed',
       title: 'Chief Executive Officer',
-      description: '25+ years in global logistics',
-      avatar: 'MC'
-    },
-    {
-      name: 'Sarah Martinez',
-      title: 'Chief Operations Officer',
-      description: 'Expert in supply chain optimization',
-      avatar: 'SM'
-    },
-    {
-      name: 'David Johnson',
-      title: 'Chief Technology Officer',
-      description: 'Leading digital transformation initiatives',
-      avatar: 'DJ'
-    },
-    {
-      name: 'Lisa Wang',
-      title: 'Chief Financial Officer',
-      description: 'Strategic financial planning expert',
-      avatar: 'LW'
+      description: 'CEO of the company',
+      avatar: 'NH'
     }
   ];
 

@@ -8,6 +8,8 @@ module.exports = function (sequelize, DataTypes) {
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE'
     },
+    name: { type: DataTypes.STRING, allowNull: true },
+    company: { type: DataTypes.STRING, allowNull: true },
     rating: { type: DataTypes.INTEGER },
     comment: { type: DataTypes.TEXT },
     is_visible: { type: DataTypes.BOOLEAN, defaultValue: true },

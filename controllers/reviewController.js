@@ -64,6 +64,8 @@ exports.createReview = function (req, res) {
 
   var body = req.body || {};
   var userId = body.user_id || null;
+  var name = body.name || null;
+  var company = body.company || null;
   // Try to associate review with authenticated user if token is present
   try {
     var authHeader = req.headers && req.headers.authorization;
@@ -95,6 +97,8 @@ exports.createReview = function (req, res) {
 
   Review.create({
     user_id: userId,
+    name: name,
+    company: company,
     rating: ratingNumber,
     comment: comment,
     is_visible: true,
@@ -116,6 +120,8 @@ exports.createReview = function (req, res) {
         var fallbackId = parseInt(process.env.DEFAULT_REVIEW_USER_ID || '1', 10) || 1;
         return Review.create({
           user_id: fallbackId,
+          name: name,
+          company: company,
           rating: ratingNumber,
           comment: comment,
           is_visible: true,
