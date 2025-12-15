@@ -261,11 +261,11 @@ const Homepage = () => {
         <div className="about__container">
           <div className="about__text">
             <h2 className="section__title">About StarShipping</h2>
-            <p>StarShipping leads the way in global logistics, connecting businesses and people for over 20 years. Our mission is to make shipping simple, reliable, and accessible for all.</p>
+            <p>StarShipping leads the way in global logistics, connecting businesses and people for over 10 years. Our mission is to make shipping simple, reliable, and accessible for all.</p>
             <div className="about__stats">
-              <div className="about__stat"><span>20+</span> Years Experience</div>
+              <div className="about__stat"><span>10</span> Years Experience</div>
               <div className="about__stat"><span>150+</span> Countries</div>
-              <div className="about__stat"><span>1M+</span> Happy Customers</div>
+              <div className="about__stat"><span>100K</span> Happy Customers</div>
             </div>
           </div>
           <div className="about__image">
