@@ -350,6 +350,24 @@ const shippingController = {
       replyTo: email || undefined
     };
 
+    // If EMAIL_DRY_RUN is enabled, do not actually send mail; simulate success for testing
+    if (String(process.env.EMAIL_DRY_RUN || '').toLowerCase() === 'true') {
+      try {
+        console.log('📭 EMAIL_DRY_RUN enabled. Would send booking email with options:', {
+          to: mailOptions.to,
+          cc: mailOptions.cc,
+          subject: mailOptions.subject,
+          replyTo: mailOptions.replyTo
+        });
+      } catch (e) {}
+
+      return res.status(201).json({
+        success: true,
+        emailSent: false,
+        message: 'Booking request simulated (EMAIL_DRY_RUN). No email sent.'
+      });
+    }
+
     // Optional SMTP connectivity check (does not block if it fails)
     try {
       bookingTransporter.verify(function (vErr, success) {

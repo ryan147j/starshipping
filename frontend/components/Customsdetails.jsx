@@ -2,7 +2,9 @@ import React, { useEffect } from 'react';
 import './CustomsDetails.css';
 import { useNavigate } from 'react-router-dom';
 import Header from './Header';
-import videoSrc from '../src/assets/customss.mp4';
+import customsPoster from '../src/assets/customs.jpg';
+// Serve large media from public to avoid bundling issues in production
+const VIDEO_URL = '/media/customss.mp4';
 
 const Customsdetails = () => {
   const navigate = useNavigate();
@@ -21,7 +23,7 @@ const Customsdetails = () => {
 
       {/* Hero band */}
       <section className="cdx-hero">
-        <video className="cdx-hero__video" src={videoSrc} autoPlay muted loop playsInline preload="metadata" />
+        <video className="cdx-hero__video" src={VIDEO_URL} poster={customsPoster} autoPlay muted loop playsInline preload="metadata" />
         <div className="cdx-hero__overlay" />
         <div className="container center">
           <h1 className="cdx-title cdx-fade-up">Customs Clearance</h1>

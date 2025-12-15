@@ -4,7 +4,8 @@ import '../components/Homepage.css';
 import Header from './Header';
 import { Link, NavLink } from 'react-router-dom';
 import logoDark from '../src/assets/logostarshipping2.png';
-import videoSrc from '../src/assets/cargooo.mp4';
+// Serve large media from public to avoid bundling issues in production
+const VIDEO_URL = '/media/cargooo.mp4';
 
 // Full-width details page matching the other services pages
 const HeavyCargoDetails = () => {
@@ -26,7 +27,7 @@ const HeavyCargoDetails = () => {
       <Header transparentOnTop={true} active="services" />
       {/* Hero */}
       <section className="hcd-hero">
-        <video className="hcd-video" src={videoSrc} autoPlay muted loop playsInline preload="metadata" />
+        <video className="hcd-video" src={VIDEO_URL} poster={logoDark} autoPlay muted loop playsInline preload="metadata" />
         <div className="hcd-hero__content hcd-reveal">
           <h1 className="hcd-title">Heavy Cargo Expertise</h1>
           <p className="hcd-sub">From oversized loads to delicate machinery — we move it all with precision and safety.</p>

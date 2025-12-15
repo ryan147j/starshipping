@@ -2,7 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import './AirfreightDetails.css';
 import { Link, useNavigate } from 'react-router-dom';
 import logoDark from '../src/assets/logostarshipping2.png';
-import videoSrc from '../src/assets/aircargo.mp4';
+// Serve large media from public to avoid bundling issues in production
+const VIDEO_URL = '/media/aircargo.mp4';
 import planeImg from '../src/assets/airfreight.jpg';
 import Footer from './Footer';
 
@@ -50,7 +51,7 @@ const AirfreightDetails = () => {
 
       {/* Hero */}
       <section className="afx-hero">
-        <video className="afx-hero__video" src={videoSrc} autoPlay muted loop playsInline preload="metadata" />
+        <video className="afx-hero__video" src={VIDEO_URL} poster={planeImg} autoPlay muted loop playsInline preload="metadata" />
         <div className="afx-hero__overlay" />
         <div className="afx-hero__content">
           <h1 className="afx-hero__title afx-fade-up">Air Freight — Delivering Speed, Safety, and Global Reach</h1>

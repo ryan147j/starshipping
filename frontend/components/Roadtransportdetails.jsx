@@ -4,7 +4,9 @@ import '../components/Homepage.css';
 import { Link, useNavigate, NavLink } from 'react-router-dom';
 import Header from './Header';
 import logoDark from '../src/assets/logostarshipping2.png';
-import roadcargo from '../src/assets/roadcargo2.mp4';
+import roadPoster from '../src/assets/roadtransport.jpg';
+// Serve large media from public to avoid bundling issues in production
+const VIDEO_URL = '/media/roadcargo2.mp4';
 
 const RoadtransportDetails = () => {
   const progressRef = useRef(null);
@@ -111,7 +113,8 @@ const RoadtransportDetails = () => {
         <video
           ref={heroVideoRef}
           className="rtx-hero__video"
-          src={roadcargo}
+          src={VIDEO_URL}
+          poster={roadPoster}
           autoPlay
           muted
           loop

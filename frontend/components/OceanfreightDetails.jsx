@@ -2,7 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import './OceanfreightDetails.css';
 import { Link, useNavigate } from 'react-router-dom';
 import logoDark from '../src/assets/logostarshipping2.png';
-import videoSrc from '../src/assets/cagoshipsea2.mp4';
+// Serve large media from public to avoid bundling issues in production
+const VIDEO_URL = '/media/cagoshipsea2.mp4';
 import envImg from '../src/assets/internationaltransport.jpg';
 
 const OceanfreightDetails = () => {
@@ -52,7 +53,7 @@ const OceanfreightDetails = () => {
 
       {/* Hero with video background */}
       <section className="ofx-hero">
-        <video className="ofx-hero__video" src={videoSrc} autoPlay muted loop playsInline preload="metadata"></video>
+        <video className="ofx-hero__video" src={VIDEO_URL} poster={envImg} autoPlay muted loop playsInline preload="metadata"></video>
         <div className="ofx-hero__overlay" />
         <div className="ofx-hero__content">
           <h1 className="ofx-hero__title ofx-fade-up">Ocean Freight — Connecting Continents Through Reliable Sea Routes.</h1>

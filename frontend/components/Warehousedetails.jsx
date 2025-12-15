@@ -4,7 +4,8 @@ import './Warehousedetails.css';
 import './Homepage.css';
 import { NavLink } from 'react-router-dom';
 import logoDark from '../src/assets/logostarshipping2.png';
-import videoSrc from '../src/assets/warehousing.mp4';
+// Serve large media from public to avoid bundling issues in production
+const VIDEO_URL = '/media/warehousing.mp4';
 import imgA from '../src/assets/wearhosuing.jpg';
 import imgB from '../src/assets/warehousy1.jpg';
 import imgC from '../src/assets/warehousy2.jpg';
@@ -16,7 +17,7 @@ const Warehousedetails = () => {
     <div className="wdl-light">
       {/* Video Hero at top with overlayed title + paragraph */}
       <section className="wdl-hero" aria-label="Warehousing video">
-        <video className="wdl-video" src={videoSrc} autoPlay muted loop playsInline />
+        <video className="wdl-video" src={VIDEO_URL} poster={imgA} autoPlay muted loop playsInline />
         <div className="wdl-hero-overlay" />
         <div className="wdl-hero-content">
           <h1 className="wdl-hero-title">Warehousing Services</h1>
